@@ -1,0 +1,23 @@
+<page-header [action]="phPhActionTpl">
+  <ng-template #phPhActionTpl>
+    <!--<button (click)="add()" nz-button nzType="primary">新建</button>-->
+  </ng-template>
+</page-header>
+<nz-card>
+  <sf
+    mode="search"
+    [schema]="searchSchema"
+    (formSubmit)="search($event)"
+    (formReset)="reset($event)"
+  ></sf>
+  <st
+    #st
+    [data]="data"
+    (change)="change($event)"
+    [pi]="pi"
+    [ps]="ps"
+    [total]="total"
+    [page]="page"
+    [columns]="columns"
+  ></st>
+</nz-card>

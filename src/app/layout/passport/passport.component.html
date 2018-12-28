@@ -1,0 +1,18 @@
+<div class="container">
+
+  <div class="wrap">
+    <div class="top">
+      <div class="head">
+        <img class="logo" src="./assets/logo-color.svg">
+        <span class="title">{{title}}</span>
+      </div>
+      <div class="desc">{{desc}}</div>
+    </div>
+    <router-outlet></router-outlet>
+    <global-footer [links]="links">
+      Copyright
+      <i class="anticon anticon-copyright"></i> 2018
+      <a href="//www.gxwsxx.com" target="_blank">广西网视</a>出品
+    </global-footer>
+  </div>
+</div>
