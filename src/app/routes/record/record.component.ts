@@ -65,7 +65,7 @@ export class RoutesRecordComponent implements OnInit {
     });
   }
 
-  reset() {
+  reset(param) {
     this.searchParam = {};
     this.http.get('/record').subscribe(res => {
       this.data = res['data'];

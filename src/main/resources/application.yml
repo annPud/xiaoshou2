@@ -12,6 +12,7 @@ spring:
   mvc:
     servlet:
       path: /api
+    static-path-pattern: /**
   
 logging:
   level:

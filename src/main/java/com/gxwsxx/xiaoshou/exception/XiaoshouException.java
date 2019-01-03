@@ -1,6 +1,10 @@
 package com.gxwsxx.xiaoshou.exception;
 
 public class XiaoshouException extends Exception {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8134128289831652430L;
 	Type type;
 
 	public Integer getStatus() {
