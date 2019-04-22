@@ -23,7 +23,7 @@ export class RoutesUserComponent implements OnInit {
   columns: STColumn[] = [
     { title: '编号', type: 'no' },
     { title: '姓名', index: 'name' },
-    { title: '登陆名', index: 'userName' },
+    { title: '手机号码', index: 'userName' },
     { title: '邮箱', index: 'email' },
     {
       title: '角色',
@@ -31,7 +31,7 @@ export class RoutesUserComponent implements OnInit {
       type: 'tag',
       tag: {
         ADMIN: { text: '管理员', color: 'green' },
-        SALER: { text: '销售员', color: 'blue' },
+        SALER: { text: '帮扶人', color: 'blue' },
       },
     },
     {

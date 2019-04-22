@@ -13,14 +13,14 @@ export class RoutesUserEditComponent implements OnInit {
   schema: SFSchema = {
     properties: {
       name: { type: 'string', title: '姓名' },
-      userName: { type: 'string', title: '登陆名' },
+      userName: { type: 'string', title: '手机号码' },
       password: { type: 'string', title: '密码' },
       email: { type: 'string', title: '邮箱' },
       role: {
         type: 'string',
         title: '角色',
         enum: [
-          { label: '销售员', value: 'SALER' },
+          { label: '帮扶人', value: 'SALER' },
           { label: '管理员', value: 'ADMIN' },
         ],
         default: 'SALER',

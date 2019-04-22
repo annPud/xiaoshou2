@@ -36,17 +36,17 @@ export class RoutesRecordComponent implements OnInit {
     properties: {
       mobile: {
         type: 'string',
-        title: '手机号',
+        title: '贫困户',
       },
     },
   };
   @ViewChild('st') st: STComponent;
   columns: STColumn[] = [
     { title: '编号', type: 'no' },
-    { title: '手机号', index: 'mobile' },
-    { title: '业务名称', index: 'goodsName' },
+    { title: '贫困户', index: 'mobile' },
+    { title: '拨款项目', index: 'goodsName' },
     { title: '时间', type: 'date', index: 'time' },
-    { title: '销售人员', index: 'salerName' },
+    { title: '帮扶人', index: 'salerName' },
   ];
 
   constructor(private http: _HttpClient, private modal: ModalHelper) {}

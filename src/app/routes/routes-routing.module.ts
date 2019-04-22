@@ -40,7 +40,7 @@ const routes: Routes = [
       {
         path: 'sale',
         component: RoutesSaleComponent,
-        data: { title: '销售业务' },
+        data: { title: '拨款项目' },
       },
       {
         path: 'record',
