@@ -28,41 +28,41 @@ import com.gxwsxx.xiaoshou.service.UserService;
 @RestController
 public class AuthController {
 
-	Logger log = LoggerFactory.getLogger(getClass());
+  Logger log = LoggerFactory.getLogger(getClass());
 
-	@Autowired
-	UserService us;
+  @Autowired
+  UserService us;
 
-	@Autowired
-	SettingService ss;
+  @Autowired
+  SettingService ss;
 
-	@Autowired
-	MenuService ms;
+  @Autowired
+  MenuService ms;
 
-	@PostMapping("/token")
-	public ResponseModel postToken(@RequestBody UserModel user) throws XiaoshouException {
-		String token = us.login(user.getUsername(), user.getPassword());
-		TokenModel tm = new TokenModel();
-		tm.setToken(token);
-		return new ResponseModel(tm);
-	}
+  @PostMapping("/token")
+  public ResponseModel postToken(@RequestBody UserModel user) throws XiaoshouException {
+    String token = us.login(user.getUsername(), user.getPassword());
+    TokenModel tm = new TokenModel();
+    tm.setToken(token);
+    return new ResponseModel(tm);
+  }
 
-	@DeleteMapping("/token")
-	public ResponseModel delToken(@RequestHeader String token) {
-		us.logout(token);
-		return new ResponseModel();
-	}
+  @DeleteMapping("/token")
+  public ResponseModel delToken(@RequestHeader String token) {
+    us.logout(token);
+    return new ResponseModel();
+  }
 
-	@GetMapping("/startup")
-	public ResponseModel startup(@RequestHeader String token) throws XiaoshouException {
-		log.debug(token);
-		UserModel u = us.getUserByToken(token);
-		StartupModel sm = new StartupModel();
-		sm.setUser(u);
-		AppModel a = ss.getApp();
-		sm.setApp(a);
-		List<MenuModel> m = ms.getAllByRole(u.getRole());
-		sm.setMenus(m);
-		return new ResponseModel(sm);
-	}
+  @GetMapping("/startup")
+  public ResponseModel startup(@RequestHeader String token) throws XiaoshouException {
+    log.debug(token);
+    UserModel u = us.getUserByToken(token);
+    StartupModel sm = new StartupModel();
+    sm.setUser(u);
+    AppModel a = ss.getApp();
+    sm.setApp(a);
+    List<MenuModel> m = ms.getAllByRole(u.getRole());
+    sm.setMenus(m);
+    return new ResponseModel(sm);
+  }
 }

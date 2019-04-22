@@ -1,5 +1,5 @@
 spring:
-  application: 
+  application:
     name: xiaoshou
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -13,12 +13,17 @@ spring:
     servlet:
       path: /api
     static-path-pattern: /**
-  
+
+# server:
+#   error:
+#     whitelabel:
+#       enabled: false
+
 logging:
   level:
     com.gxwsxx: DEBUG
 #    org.mybatis.spring: DEBUG
-    
+
 mybatis:
 #  mapper-locations: classpath:mapper/*.xml
   configuration:

@@ -68,7 +68,7 @@ const ICONS = [
 // #endregion
 
 import { environment } from '@env/environment';
-import { SettingDrawerComponent } from './setting-drawer/setting-drawer.component';
+// import { SettingDrawerComponent } from './setting-drawer/setting-drawer.component';
 import { StartupService } from '@core/startup/startup.service';
 
 @Component({
@@ -144,10 +144,10 @@ export class LayoutDefaultComponent
     // Setting componet for only developer
     if (!environment.production) {
       setTimeout(() => {
-        const settingFactory = this.resolver.resolveComponentFactory(
-          SettingDrawerComponent,
-        );
-        this.settingHost.createComponent(settingFactory);
+        // const settingFactory = this.resolver.resolveComponentFactory(
+        //   // SettingDrawerComponent,
+        // );
+        // this.settingHost.createComponent(settingFactory);
       }, 22);
     }
   }

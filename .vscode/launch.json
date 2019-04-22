@@ -4,14 +4,24 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
-    
     {
       "type": "chrome",
       "request": "launch",
-      "name": "xiaoshou debug",
+      "name": "ui angular",
       "url": "http://localhost:4200",
       "webRoot": "${workspaceRoot}",
       "sourceMaps": true
+    },
+
+    {
+      "type": "java",
+      "name": "Spring Boot-Application<xiaoshou>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "console": "internalConsole",
+      "mainClass": "com.gxwsxx.xiaoshou.Application",
+      "projectName": "xiaoshou",
+      "args": ""
     }
   ]
 }

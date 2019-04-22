@@ -20302,6 +20302,10 @@ code {
 .scrollbar-mixin(@element-name) {
   .scrollbar-inner-mixin(@enabled) when(@enabled=true) {
     @{element-name} {
+      // FireFox
+      scrollbar-color: @scrollbar-track-color @scrollbar-thumb-color;
+      scrollbar-width: thin;
+      // Other
       &::-webkit-scrollbar {
         height: @scrollbar-width;
         width: @scrollbar-height;
@@ -20334,8 +20338,8 @@ code {
 }
 
 // scrollbar
-// TODO: https://github.com/NG-ZORRO/ng-zorro-antd/pull/2617
-.scrollbar-mixin(~'body, .nz-measure-scrollbar-placeholder, @{scrollbar-prefix}, .@{ant-prefix}-dialog-wrap, .@{ant-prefix}-drawer-body, .@{ant-prefix}-drawer-wrapper-body, .@{ant-prefix}-anchor-wrapper, textarea.@{ant-prefix}-input');
+// TODO: (.nz-measure-scrollbar-placeholder) https://github.com/NG-ZORRO/ng-zorro-antd/pull/2617
+.scrollbar-mixin(~'body, @{scrollbar-prefix}, .@{ant-prefix}-dialog-wrap, .@{ant-prefix}-drawer-body, .@{ant-prefix}-drawer-wrapper-body, .@{ant-prefix}-anchor-wrapper, textarea.@{ant-prefix}-input');
 
 // table
 .scrollbar-table-mixin(@enabled) when(@enabled=true) {
@@ -20353,7 +20357,6 @@ code {
 @alain-default-header-search-height:  34px;
 @alain-default-header-icon-fs:        18px;
 
-@alain-default-aside-scroll-width:            20px;
 @alain-default-aside-wd:                      200px;
 @alain-default-aside-bg:                      #fff;
 @alain-default-aside-scrollbar-width:         0;
@@ -20671,8 +20674,31 @@ body {
     overflow-x: hidden;
     overflow-y: scroll;
     height: 100%;
-    transition: width 0.2s;
-    width: @alain-default-aside-scroll-width + @alain-default-aside-wd;
+    -webkit-overflow-scrolling: touch;
+    // IE
+    -ms-scroll-chaining: chained;
+    -ms-overflow-style: none;
+    -ms-content-zooming: zoom;
+    -ms-scroll-rails: none;
+    -ms-content-zoom-limit-min: 100%;
+    -ms-content-zoom-limit-max: 500%;
+    -ms-scroll-snap-type: proximity;
+    -ms-scroll-snap-points-x: snapList(100%, 200%, 300%, 400%, 500%);
+    -ms-overflow-style: none;
+    // Firefox
+    scrollbar-width: none;
+    // Chrome
+    &::-webkit-scrollbar {
+      height: @alain-default-aside-scrollbar-width;
+      width: @alain-default-aside-scrollbar-height;
+    }
+    &::-webkit-scrollbar-track {
+      -webkit-box-shadow: inset 0 0 @alain-default-aside-scrollbar-width
+        @alain-default-aside-scrollbar-track-color;
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: @alain-default-aside-scrollbar-thumb-color;
+    }
   }
 }
 
@@ -20681,10 +20707,6 @@ body {
   @{alain-default-prefix}__collapsed {
     @{alain-default-prefix}__aside {
       width: @alain-default-aside-collapsed-wd;
-      &-inner {
-        transition: width 0.2s;
-        width: @alain-default-aside-scroll-width + @alain-default-aside-collapsed-wd;
-      }
     }
   }
 }
@@ -21362,6 +21384,10 @@ body {
       margin-bottom: 0;
       padding-bottom: 0;
     }
+    // fix angular & ng-zorro-antd
+    .@{ant-prefix}-form-explain {
+      display: block;
+    }
   }
   &__label {
     text-align: right;
@@ -21425,10 +21451,6 @@ body {
         margin-right: 0;
       }
     }
-  }
-  // fix angular & ng-zorro-antd
-  .@{ant-prefix}-form-explain {
-    display: block;
   }
 }
 
@@ -21496,9 +21518,31 @@ body {
   }
 }
 
+ellipsis {
+  display: inline-block;
+}
+
 .ellipsis {
   overflow: hidden;
-  display: -webkit-box;
+  display: inline-block;
+  word-break: break-all;
+  width: 100%;
+  &__lines {
+    position: relative;
+  }
+  &__line-clamp {
+    position: relative;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+  }
+  &__shadow {
+    display: block;
+    position: absolute;
+    color: transparent;
+    opacity: 0;
+    z-index: -999;
+  }
 }
 
 .error-collect {
@@ -22023,7 +22067,7 @@ body {
   }
   .@{ant-prefix}-tabs-nav .@{ant-prefix}-tabs-tab {
     padding: 0;
-    .name {
+    @{reuse-tab-prefix}__name {
       display: inline-block;
       padding: 8px 20px;
     }
@@ -22124,8 +22168,9 @@ g2-tag-cloud {
     &-action {
       cursor: pointer;
       position: absolute;
-      top: 0;
+      top: 4px;
       right: 0;
+      line-height: 1;
     }
   }
   &__avatar {
